@@ -1,4 +1,4 @@
-const ratingModel = require('../models/ratingModel');
+const publicRatingModel = require('../models/publicRatingModel');
 const categoryModel = require('../models/categoryModel');
 
 const analyticsService = {
@@ -13,7 +13,7 @@ const analyticsService = {
     },
 
     async getOverview() {
-        const stats = await ratingModel.getStats();
+        const stats = await publicRatingModel.getStats();
         const categories = await categoryModel.findAll();
 
         const topRated = await this.getCategoryAnalytics();
@@ -27,11 +27,11 @@ const analyticsService = {
     },
 
     async getCategoryAnalytics() {
-        return ratingModel.getStatsByCategory();
+        return publicRatingModel.getStatsByCategory();
     },
 
     async getRecentActivity(limit = 10) {
-        return ratingModel.getRecent(limit);
+        return publicRatingModel.getRecent(limit);
     }
 };
 
