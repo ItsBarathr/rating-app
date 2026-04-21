@@ -26,6 +26,10 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+app.get('/', (req, res) => {
+    res.json({ message: 'Rating API running', version: '1.0.0' });
+});
+
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1', apiRoutes);
 
